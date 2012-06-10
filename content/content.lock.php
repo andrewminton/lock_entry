@@ -47,6 +47,7 @@
 				break;
 				
 				case 'lockEntry':
+				//Need a means to check if the current user matches the locked user so that the table isn't overridden
 					$lock = Symphony::Database()->fetchRow(0, "SELECT * FROM tbl_entry_lock WHERE entry_id=$entry_id");
 					if ($lock) Symphony::Database()->query("DELETE FROM tbl_entry_lock WHERE entry_id=$entry_id");
 					Symphony::Database()->query("INSERT INTO tbl_entry_lock (entry_id, user_id) VALUES ($entry_id, $user_id)");			
