@@ -40,7 +40,7 @@ var EntryLock;
 		
 		lockEntry: function() {
 			var self = this;
-			var url = '/symphony23/symphony/extension/lock_entry/lock/';
+			var url = Symphony.Context.get('root') + '/symphony/extension/lock_entry/lock/';
 			var data = 'lock=lockEntry&entry_id=' + this.entry_id;
 			$.get(url, data, function(response){
 				self.updateLockTimer();
@@ -49,7 +49,7 @@ var EntryLock;
 		
 		updateLockTimer: function() {
 			var self = this;
-			var timout = setInterval(function() {
+			var timemout = setInterval(function() {
 				self.lockEntry();
 			}, 10000)
 		}

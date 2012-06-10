@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<extension id="lock_entry" status="beta" xmlns="http://symphony-cms.com/schemas/extension/1.0">
+<extension id="lock_entry" status="released" xmlns="http://symphony-cms.com/schemas/extension/1.0">
 	<name>Lock Entry</name>
 	<description>Lock entry if it's being edited by another author.</description>
-	<repo type="github">https://github.com/andrewminton/lock_entry</repo>
+	<repo type="github">https://github.com/andrewminton/entry_lock</repo>
 	<types>
 		<type>Field</type>
 	</types>
@@ -20,6 +20,6 @@
 		<!-- None -->
 	</dependencies>
 	<releases>
-	<release version="0.1" date="2012-05-26" min="2.3" max="2.3.x">Initial beta release, compatible with 2.3</release>
+	<release version="1" date="2012-05-26" min="2.3" max="2.3.x">Initial release, compatible with 2.3</release>
 	</releases>
 </extension>
