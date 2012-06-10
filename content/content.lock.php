@@ -18,11 +18,10 @@
 			
 			$timeout = 30;
 			$entry_id = $_GET['entry_id'];
-			$getuser = Administration::instance()->Author;
-			$user_id = '1';
-		    //var_dump($getuser,$user_id,$entry_id);
-			
-			
+			$getuser = Administration::instance()->Author->get(id);
+			$user_id = $getuser;
+		    //var_dump($getuser);
+
 			switch($_GET['lock']) {
 				
 				case 'checkLocked':
@@ -31,7 +30,7 @@
 					$locked = false;
 					
 					// page has been locked by someone else
-					if ($lock && $lock['user_id'] = $user_id) {
+					if ($lock && $lock['user_id'] != $user_id) {
 						
 						// lock has expired, remove it for housekeeping
 						if ((time() - strtotime($lock['timestamp'])) >= $timeout) {
