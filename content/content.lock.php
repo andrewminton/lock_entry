@@ -18,8 +18,7 @@
 			
 			$timeout = 30;
 			$entry_id = $_GET['entry_id'];
-			$getuser = Administration::instance()->Author->get(id);
-			$user_id = $getuser;
+			$user_id = Administration::instance()->Author->get(id);
 
 			switch($_GET['lock']) {
 				

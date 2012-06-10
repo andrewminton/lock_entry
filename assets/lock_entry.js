@@ -20,7 +20,7 @@ var EntryLock;
 			} else {
 				this.lockEntry();
 			}
-			
+			//Not sure the Lock entry should trigger by default??
 			this.lockEntry();
 		},
 		
