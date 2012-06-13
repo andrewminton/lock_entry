@@ -8,7 +8,6 @@ var EntryLock;
 		
 		entry_id: null,
 		user_id: null,
-		
 		is_locked: false,
 		
 		init: function() {
@@ -19,9 +18,10 @@ var EntryLock;
 				this.lockEntryForm();
 			} else {
 				this.lockEntry();
+				
 			}
 			//Not sure the Lock entry should trigger by default??
-			this.lockEntry();
+			//this.lockEntry();
 		},
 		
 		lockEntryForm: function() {
@@ -42,16 +42,13 @@ var EntryLock;
 			var self = this;
 			var url = Symphony.Context.get('root') + '/symphony/extension/lock_entry/lock/';
 			var data = 'lock=lockEntry&entry_id=' + this.entry_id;
-			$.get(url, data, function(response){
-				self.updateLockTimer();
-			});
+			$.get(url, data, setInterval(function() {self.lockEntry();}, 10000));
 		},
 		
 		updateLockTimer: function() {
-			var self = this;
-			var timemout = setInterval(function() {
-				self.lockEntry();
-			}, 10000)
+		
+			//var self = this;
+			//var 
 		}
 	}
 		
