@@ -9,16 +9,16 @@ var EntryLock;
 		entry_id: null,
 		user_id: null,
 		is_locked: false,
-		
+
 		init: function() {
-			this.entry_id = window.location.href.match(/([0-9]+)\/$/)[1];
+			//this.entry_id = window.location.href.match(/([0-9]+)\/$/)[1];
+			this.entry_id = Symphony.Context.get('env').entry_id;
+
 			//this.user_id = $('ul#usr li:eq(0) a').attr('href').match(/([0-9]+)\/$/)[1];
-			
 			if (this.is_locked) {
 				this.lockEntryForm();
 			} else {
 				this.lockEntry();
-				
 			}
 			//Not sure the Lock entry should trigger by default??
 			//this.lockEntry();
@@ -50,6 +50,12 @@ var EntryLock;
 			//var self = this;
 			//var 
 		}
+		/*function run() {
+    window.setTimeout(
+         "run()",
+         1000
+		);
+		}*/
 	}
 		
 })(jQuery.noConflict());
