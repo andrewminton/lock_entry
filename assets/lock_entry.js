@@ -5,7 +5,7 @@ var EntryLock;
 	EntryLock = {
 		
 		locked_message: 'This entry is locked for editing by another user.',
-		not_locked_message: 'This entry is no longer Locked Refresh the page to gain control of the Entry',
+		not_locked_message: 'This entry is no longer Locked <a href="'+window.location.href+'">Refresh</a> the page to gain control of the Entry',
 		entry_id: null,
 		user_id: null,
 		is_locked: false,
@@ -47,7 +47,7 @@ var EntryLock;
 		else{
 		var noticetext = $('<p id="locked" class="error notice active"></p>');	
 			}
-		noticetext.text(message);
+		noticetext.html(message);
 		noticetext.appendTo(notice);
 		$('#locked').remove();
 		noticetext.appendTo(notice);
