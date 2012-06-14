@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<extension id="lock_entry" status="released" xmlns="http://symphony-cms.com/schemas/extension/1.0">
+<extension id="lock_entry" status="experimental" xmlns="http://symphony-cms.com/schemas/extension/1.0">
 	<name>Lock Entry</name>
 	<description>Lock entry if it's being edited by another author.</description>
 	<repo type="github">https://github.com/andrewminton/entry_lock</repo>
 	<url type="thread">http://symphony-cms.com/discuss/thread/85318/</url>
 	<url type="thread">http://symphony-cms.com/discuss/thread/22779/</url>
 	<types>
-		<type>Field</type>
+		<type>Interface</type>
 	</types>
 	<authors>
 		<author>
@@ -22,6 +22,6 @@
 		<!-- None -->
 	</dependencies>
 	<releases>
-	<release version="1" date="2012-05-26" min="2.3" max="2.3.x">Initial release, compatible with 2.3</release>
+	<release version="0.8" date="2012-05-26" min="2.3" max="2.3.x">Initial release, compatible with 2.3</release>
 	</releases>
 </extension>
