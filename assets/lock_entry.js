@@ -19,7 +19,6 @@ var EntryLock;
 				this.lockEntryForm();
 			} else if(this.is_locked == false && this.lock_message == true){
 				this.lockEntryForm();
-				alert('Both statements are true');
 			} else{
 			  this.lockEntry();
 			}
