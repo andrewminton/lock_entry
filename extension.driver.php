@@ -22,7 +22,7 @@
 			$pageContext = $page->getContext();
 			$entryID = $pageContext['entry_id'];
 			
-			if ($page instanceof ContentPublish and ($pageContext['page'] == 'new' || $pageContext['page'] == 'edit')) {
+			if ($page instanceof ContentPublish and ($pageContext['page'] == 'edit')) {
 				$page->addScriptToHead(URL . '/extensions/lock_entry/assets/lock_entry.js', 300000);
 			    $page->addScriptToHead(SYMPHONY_URL . '/extension/lock_entry/lock/?lock=checkLocked&entry_id='.$entryID, 300001);
 			}

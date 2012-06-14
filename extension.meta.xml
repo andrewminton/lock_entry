@@ -3,6 +3,8 @@
 	<name>Lock Entry</name>
 	<description>Lock entry if it's being edited by another author.</description>
 	<repo type="github">https://github.com/andrewminton/entry_lock</repo>
+	<url type="thread">http://symphony-cms.com/discuss/thread/85318/</url>
+	<url type="thread">http://symphony-cms.com/discuss/thread/22779/</url>
 	<types>
 		<type>Field</type>
 	</types>

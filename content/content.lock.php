@@ -12,35 +12,50 @@
 			parent::__construct();
 			$this->_uri = SYMPHONY_URL . '/extension/lock_entry';
 			$this->_driver = Symphony::ExtensionManager()->create('lock_entry');
+		
 		}
 		
 		public function __viewIndex() {
-			
-			$timeout = 30;
+
+		
+		
+			$timeout = 3580;
 			$entry_id = $_GET['entry_id'];
 			$user_id = Administration::instance()->Author->get(id);
-
+		
+			//$lock = Symphony::Database()->fetchRow(0, "SELECT * FROM tbl_entry_lock WHERE entry_id=$entry_id");
+			//$getthetime = ((strtotime($lock['timestamp'])) - time());
+			//$timeout = 20;
+			//var_dump($getthetime, time(), $timeout);
+		
+		
 			switch($_GET['lock']) {
-				
+				//check if entry has been locked
 				case 'checkLocked':
 				
 					$lock = Symphony::Database()->fetchRow(0, "SELECT * FROM tbl_entry_lock WHERE entry_id=$entry_id");
 					$locked = false;
+					$lockmessage = false;
 					
 					// page has been locked by someone else
 					if ($lock && $lock['user_id'] != $user_id) {
 						
 						// lock has expired, remove it for housekeeping
-						if ((time() - strtotime($lock['timestamp'])) >= $timeout) {
+						if ((strtotime($lock['timestamp']) - time()) <= $timeout) {
 							Symphony::Database()->query("DELETE FROM tbl_entry_lock WHERE entry_id=$entry_id");
+						    $lockmessage = true;
 						} else {
 							$locked = true;
+							$lockmessage = false;
+							
 						}
                          
 					}
 					
 					header('content-type: text/javascript');
 					echo 'EntryLock.is_locked = ' . (($locked) ? 'true' : 'false') . ';';
+					echo 'EntryLock.lock_message = ' . (($lockmessage) ? 'true' : 'false') . ';';
+					
 					
 				break;
 				
@@ -53,7 +68,6 @@
 					
 					header('content-type: text/javascript');
 					echo 'Entry Has been Locked';
-					
 				break;
 			}
 			
