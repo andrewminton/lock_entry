@@ -19,22 +19,20 @@
 			$timeout = 30;
 			$entry_id = $_GET['entry_id'];
 			$getuser = Administration::instance()->Author;
-			$user_id = '1';
-		    //var_dump($getuser,$user_id,$entry_id);
-			
+			$user_id = $getuser->get('id');
 			
 			switch($_GET['lock']) {
 				
 				case 'checkLocked':
 				
-					$lock = Symphony::Database()->fetchRow(0, "SELECT * FROM tbl_entry_lock WHERE entry_id=$entry_id");
+					$query = Symphony::Database()->fetchRow(0, "SELECT * FROM tbl_entry_lock WHERE entry_id=$entry_id");
 					$locked = false;
 					
 					// page has been locked by someone else
-					if ($lock && $lock['user_id'] = $user_id) {
+					if ($query && $query['user_id'] = $user_id) {
 						
 						// lock has expired, remove it for housekeeping
-						if ((time() - strtotime($lock['timestamp'])) >= $timeout) {
+						if ((time() - strtotime($query['timestamp'])) >= $timeout) {
 							Symphony::Database()->query("DELETE FROM tbl_entry_lock WHERE entry_id=$entry_id");
 						} else {
 							$locked = true;
@@ -48,8 +46,8 @@
 				break;
 				
 				case 'lockEntry':
-					$lock = Symphony::Database()->fetchRow(0, "SELECT * FROM tbl_entry_lock WHERE entry_id=$entry_id");
-					if ($lock) Symphony::Database()->query("DELETE FROM tbl_entry_lock WHERE entry_id=$entry_id");
+					$query = Symphony::Database()->fetchRow(0, "SELECT * FROM tbl_entry_lock WHERE entry_id=$entry_id");
+					if ($query) Symphony::Database()->query("DELETE FROM tbl_entry_lock WHERE entry_id=$entry_id");
 					Symphony::Database()->query("INSERT INTO tbl_entry_lock (entry_id, user_id) VALUES ($entry_id, $user_id)");			
 					
 					header('content-type: text/javascript');

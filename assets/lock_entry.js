@@ -14,7 +14,7 @@ var EntryLock;
 		init: function() {
 			this.entry_id = window.location.href.match(/([0-9]+)\/$/)[1];
 			//this.user_id = $('ul#usr li:eq(0) a').attr('href').match(/([0-9]+)\/$/)[1];
-			
+
 			if (this.is_locked) {
 				this.lockEntryForm();
 			} else {
@@ -40,18 +40,22 @@ var EntryLock;
 		
 		lockEntry: function() {
 			var self = this;
-			var url = '/symphony23/symphony/extension/lock_entry/lock/';
+			var root = Symphony.Context.get('root');
+			var url = root + '/symphony/extension/lock_entry/lock/';
 			var data = 'lock=lockEntry&entry_id=' + this.entry_id;
+			
 			$.get(url, data, function(response){
 				self.updateLockTimer();
+				
 			});
 		},
 		
 		updateLockTimer: function() {
 			var self = this;
-			var timout = setInterval(function() {
+			self.setInterval(function() {
+				alert('Event Fired');
 				self.lockEntry();
-			}, 10000)
+			}, 200)
 		}
 	}
 		
